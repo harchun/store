@@ -1,20 +1,5 @@
 <?php get_header(); ?>
 <main id="primary" class="site-main">
-    <section class="hero">
-        <div class="container">
-            <h1><?php echo esc_html(get_theme_mod('store_hero_title', '探索你的下一件好物')); ?></h1>
-            <p><?php echo esc_html(get_theme_mod('store_hero_text', '以簡潔、快速、行動裝置優先的方式呈現你的商品與品牌。')); ?></p>
-            <?php if (function_exists('wc_get_page_permalink')) : ?>
-                <a class="button" href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>"><?php esc_html_e('立即逛商城', 'store'); ?></a>
-            <?php endif; ?>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title"><?php esc_html_e('最新商品', 'store'); ?></h2>
-            <?php if (function_exists('do_shortcode')) echo do_shortcode('[products limit="8" columns="4" orderby="date" order="DESC"]'); ?>
-        </div>
-    </section>
-</main>
-<?php get_footer(); ?>
+<section class="store-hero"><div class="container"><span class="eyebrow">STORE DIRECTORY</span><h1><?php echo esc_html(get_theme_mod('store_hero_title','找到適合你的夜生活店家')); ?></h1><p><?php echo esc_html(get_theme_mod('store_hero_text','整理店家資訊、消費模式與特色，讓你在前往之前先看懂怎麼消費。')); ?></p><form class="store-search" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>"><input name="s" type="search" placeholder="搜尋店家名稱、城市或關鍵字"><button type="submit">搜尋店家</button></form></div></section>
+<section class="section"><div class="container"><div class="section-head"><div><span class="eyebrow">LATEST STORES</span><h2>最新店家</h2></div><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>">查看全部 →</a></div><div class="store-grid"><?php $q=new WP_Query(array('post_type'=>'post','posts_per_page'=>9)); if($q->have_posts()): while($q->have_posts()):$q->the_post(); get_template_part('template-parts/store-card'); endwhile; wp_reset_postdata(); else: ?><p>尚未建立店家文章。</p><?php endif; ?></div></div></section>
+</main><?php get_footer(); ?>
