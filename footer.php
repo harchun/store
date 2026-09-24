@@ -1,12 +1,2 @@
 <?php if (!defined('ABSPATH')) exit; ?>
-<footer class="site-footer">
-    <div class="container">
-        <div class="widget-area">
-            <?php if (is_active_sidebar('sidebar-1')) dynamic_sidebar('sidebar-1'); ?>
-        </div>
-        <p>&copy; <?php echo esc_html(date_i18n('Y')); ?> <?php bloginfo('name'); ?>.</p>
-    </div>
-</footer>
-<?php wp_footer(); ?>
-</body>
-</html>
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><?php bloginfo('name'); ?></div><p><?php bloginfo('description'); ?></p></div><div><?php wp_nav_menu(array('theme_location'=>'footer','fallback_cb'=>false)); ?></div></div><div class="footer-bottom"><span>&copy; <?php echo esc_html(date_i18n('Y')); ?> <?php bloginfo('name'); ?>.</span><span>Store Directory Theme</span></div></div></footer><?php wp_footer(); ?></body></html>
