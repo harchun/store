@@ -1,10 +1,11 @@
-<article class="store-card">
+<article <?php post_class('store-card'); ?>>
 <a class="store-card-image" href="<?php the_permalink(); ?>">
-<?php if(has_post_thumbnail()) the_post_thumbnail('medium_large'); else echo '<div class="store-placeholder">STORE</div>'; ?>
+<?php if(has_post_thumbnail()): the_post_thumbnail('medium_large',array('loading'=>'lazy')); else: ?><span class="store-placeholder">STORE</span><?php endif; ?>
 </a>
 <div class="store-card-body">
-<div class="store-meta"><?php $terms=get_the_terms(get_the_ID(),'store_city'); if($terms && !is_wp_error($terms)) echo esc_html($terms[0]->name); ?> <?php $types=get_the_terms(get_the_ID(),'store_type'); if($types && !is_wp_error($types)) echo ' · '.esc_html($types[0]->name); ?></div>
+<div class="store-meta"><?php echo esc_html(store_primary_meta()); ?></div>
 <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-<p><?php echo esc_html(get_post_meta(get_the_ID(),'store_style',true)); ?></p>
-<?php $price=get_post_meta(get_the_ID(),'store_price',true); if($price): ?><div class="card-price"><?php echo esc_html($price); ?></div><?php endif; ?>
-</div></article>
+<p><?php echo esc_html(wp_trim_words(get_the_excerpt(),24)); ?></p>
+<?php if(store_meta('store_price')): ?><div class="card-price">消費：<?php echo esc_html(store_meta('store_price')); ?></div><?php endif; ?>
+</div>
+</article>
