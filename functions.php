@@ -6,16 +6,14 @@ require_once get_template_directory() . '/inc/assets.php';
 require_once get_template_directory() . '/inc/taxonomies.php';
 require_once get_template_directory() . '/inc/metadata.php';
 require_once get_template_directory() . '/inc/helpers.php';
+require_once get_template_directory() . '/inc/features.php';
 require_once get_template_directory() . '/inc/seo.php';
 
 function store_widgets_init() {
     register_sidebar(array(
-        'name' => __('側邊欄', 'store'),
-        'id' => 'sidebar-1',
-        'before_widget' => '<section class="widget">',
-        'after_widget' => '</section>',
-        'before_title' => '<h2>',
-        'after_title' => '</h2>'
+        'name' => __('側邊欄', 'store'), 'id' => 'sidebar-1',
+        'before_widget' => '<section class="widget">', 'after_widget' => '</section>',
+        'before_title' => '<h2>', 'after_title' => '</h2>'
     ));
 }
 add_action('widgets_init', 'store_widgets_init');
@@ -23,7 +21,6 @@ add_action('widgets_init', 'store_widgets_init');
 function store_excerpt_length($length) { return 28; }
 add_filter('excerpt_length', 'store_excerpt_length');
 
-// 搜尋結果只搜尋「店家文章」，避免把 WordPress Page 混進店家結果。
 function store_search_only_posts($query) {
     if (is_admin() || !$query->is_main_query() || !$query->is_search()) return;
     $query->set('post_type', 'post');
