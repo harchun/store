@@ -10,5 +10,5 @@
 </div><aside class="store-sidebar"><div class="contact-card"><h2>店家資訊</h2><?php if(store_meta('store_address')): ?><p><span>地址</span><?php echo esc_html(store_meta('store_address')); ?></p><?php endif; ?><?php if(store_meta('store_phone')): ?><p><span>電話</span><?php echo esc_html(store_meta('store_phone')); ?></p><?php endif; ?><?php if(store_meta('store_website')): ?><a class="button" href="<?php echo esc_url(store_meta('store_website')); ?>" target="_blank" rel="noopener">官方網站</a><?php endif; ?><?php if(store_meta('store_map')): ?><a class="button button-outline" href="<?php echo esc_url(store_meta('store_map')); ?>" target="_blank" rel="noopener">查看地圖</a><?php endif; ?></div></aside></div>
 </article>
 <?php endwhile; ?>
-<?php if(have_posts()) get_template_part('template-parts/store-related'); ?>
+<?php get_template_part('template-parts/store-related'); ?>
 </main><?php get_footer(); ?>
